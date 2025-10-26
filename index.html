@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-<link rel="stylesheet" href="./assets/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet" integrity="sha384-Bq4MTw0Vwfx9x1gUoG6e8g2WZw2wqmqU3v72Tfs9uF0O5AIznQJe0ZIZyHEJi9uJ" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="./assets/styles.css">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100..900&display=swap" rel="stylesheet">
 
@@ -144,20 +146,22 @@
   Lemon Wares?
 </h3>
 <p>Choose the package that suits you</p>
+
+
+
+
 <div class="d-flex flex-container">
-  <div class=" Monthly">
-<span>Monthly</span>
-<button class="button-monthly">
-  <img src="assets/images/circle.svg">
-</button>
-  </div>
-  <div class=" Yearly">
-<p>Yearly</p>
-<button class="button-yearly"> 20% discount</button>
-  </div>
+  
+  <p> Monthly </p>
+<div class="form-check form-switch mt-3 mt-lg-4  mx-3 check-switch">
+  <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+  <label class="form-check-label" for="switchCheckDefault"></label>
 </div>
-<div>
+<p class="ms-1">Yearly</p>
+<button class="button-yearly ms-3 "> 20% discount</button>
+  
 </div>
+
 <ul class="nav nav-underline basic-premium">
   
   <li class="nav-item ">
@@ -173,7 +177,7 @@
   <div class="box">
     <h5>Starter</h5>
     <p>with all your customers via all conversation channels in one central dashboard.</p>
-    <h4>$2.80</h4>
+    <h4></h4>
     <P class="per-month">Per month</P>
     <button>Choose this Plan</button>
     <div class="container-gb container-gb1 ">
@@ -217,7 +221,7 @@
   <div class="box">
     <h5>Standard</h5>
     <p>with all your customers via all conversation channels in one central dashboard.</p>
-    <h4>$4.20</h4>
+    <h4></h4>
     <P class="per-month">Per month</P>
     <button>Choose this Plan</button>
     <div class="container-gb container-gb1 ">
@@ -261,7 +265,7 @@
   <div class="box">
     <h5>Suprem</h5>
     <p>with all your customers via all conversation channels in one central dashboard.</p>
-    <h4>$7.00</h4>
+    <h4></h4>
     <P class="per-month">Per month</P>
     <button>Choose this Plan</button>
     <div class="container-gb container-gb1 ">
@@ -456,7 +460,77 @@
   
 </div>
  </footer>
+ <script>
+  const links = document.querySelectorAll('.nav-underline .nav-link');
 
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      links.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+      updatePricing();
+    });
+  });
+
+  // Pricing system
+  const pricingData = {
+    basic: {
+      monthly: { 
+        price: '$1.50', 
+        features: ['2GB SSD', '10GB Bandwidth', '15 Email Accounts', 'Unlimited Database', '4 Subdomains', '1 Parked Domain', '2 Websites', 'Softaculous', 'Free SSL'] 
+      },
+      yearly: { 
+        price: '$2.80', 
+        features: ['2GB SSD', '10GB Bandwidth', '15 Email Accounts', 'Unlimited Database', '4 Subdomains', '1 Parked Domain', '2 Websites', 'Softaculous', 'Free SSL'] 
+      }
+    },
+    premium: {
+      monthly: { 
+        price: '$2.50', 
+        features: ['4GB SSD', '20GB Bandwidth', '25 Email Accounts', 'Unlimited Database', '8 Subdomains', '2 Parked Domains', '4 Websites', 'Softaculous', 'Free SSL', 'Priority Support'] 
+      },
+      yearly: { 
+        price: '$4.20', 
+        features: ['4GB SSD', '20GB Bandwidth', '25 Email Accounts', 'Unlimited Database', '8 Subdomains', '2 Parked Domains', '4 Websites', 'Softaculous', 'Free SSL', 'Priority Support'] 
+      }
+    }
+  };
+
+  const switchInput = document.getElementById('switchCheckDefault');
+  const priceElements = document.querySelectorAll('.box h4');
+  const featureElements = document.querySelectorAll('.container-gb');
+
+  // Handle billing period toggle
+  switchInput.addEventListener('change', () => {
+    updatePricing();
+  });
+
+  function updatePricing() {
+    const isBasic = document.querySelector('.basic').classList.contains('active');
+    const isYearly = switchInput.checked;
+    const planType = isBasic ? 'basic' : 'premium';
+    const periodType = isYearly ? 'yearly' : 'monthly';
+    
+    const plan = pricingData[planType][periodType];
+    
+    // Update prices
+    priceElements.forEach(element => {
+      element.textContent = plan.price;
+    });
+    
+    // Update features
+    featureElements.forEach((element, index) => {
+      if (plan.features[index]) {
+        element.innerHTML = `<img src="assets/images/Checkmark.svg">${plan.features[index]}`;
+      }
+    });
+  }
+
+  // Initialize pricing
+  updatePricing();
+</script>
 </body>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
 </html>
