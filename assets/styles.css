@@ -2065,33 +2065,41 @@ color: #E5E5E5;
             font-weight: 700;
         }
 }
-/* الشاشات من 576 إلى 767 بكسل */
 @media (min-width: 576px) and (max-width: 767px) {
     .flex-footer {
       flex-wrap: wrap;
       justify-content: center;
       text-align: center;
     }
-  
     .colume-1 {
       width: 100%;
       order: 1;
       align-items: center;
     }
-  
     .colume-2,
     .colume-3 {
       width: 45%;
       order: 2;
     }
-  
+
+    .colume-2 p {
+        font-size: 16px;
+    }
+    .colume-3 p {
+        font-size: 16px;
+    }
+    .colume-4 p {
+        font-size: 16px;
+    }
+    .colume-5 p {
+        font-size: 16px;
+    }
     .colume-4,
     .colume-5 {
       width: 45%;
       order: 3;
-      margin-top: 1.5em;
+      margin-top: 3em;
     }
-  
     .copy {
       width: 100%;
       order: 4;
@@ -2099,14 +2107,12 @@ color: #E5E5E5;
       margin-top: 2em;
     }
   }
-  
   @media (max-width: 575px) {
     .flex-footer {
       flex-wrap: wrap;
       justify-content: center;
       text-align: center;
     }
-  
     .colume-1 {
       width: 100%;
       order: 1;
@@ -2119,6 +2125,19 @@ color: #E5E5E5;
       order: 2;
     }
   
+
+    .colume-2 p {
+        font-size: 14px;
+    }
+    .colume-3 p {
+        font-size:  14px;
+    }
+    .colume-4 p {
+        font-size: 14px;
+    }
+    .colume-5 p {
+        font-size:  14px;
+    }
     .colume-4,
     .colume-5 {
       width: 45%;
